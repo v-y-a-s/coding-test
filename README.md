@@ -1,10 +1,11 @@
-## Coding Task - Please create a seperate branch with your name and work on the solution. Your solution may contain unit tests.
+## Coding Task 
 
-### Write a pure javascript function in Nodejs which substitutes the {REF_*} values in payload and returns a transformed payload.
+### Please create a seperate branch with your name and work on the solution. Your solution may contain unit tests.
+#### Write a pure javascript function in Nodejs which substitutes the {REF_*} values in payload and returns a transformed payload.
 ```javascript
 /**
  * @param Object payload
- * @param Object parsedReferenceDetails
+ * @param Object referenceData
  * @returns Object transformedPayload
  */
 const transformer = (payload, referenceData) => {
@@ -16,7 +17,7 @@ const transformer = (payload, referenceData) => {
    return transformedPayload;
 }
 ```
-### Input
+#### Input
  * @param Object payload 
  ```JSON
  {
@@ -114,7 +115,7 @@ const transformer = (payload, referenceData) => {
  }
  ```
  
-### Expected Output
+#### Expected Output
  * returns Object transformedPayload 
  ```JSON
  {
