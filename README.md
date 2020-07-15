@@ -1,26 +1,15 @@
 ## Coding Task 
 
 ### Please create a seperate branch with your name and work on the solution. Your solution may contain unit tests.
-#### Write a pure javascript function in Nodejs which substitutes the {REF_*} values in payload and returns a transformed payload.
-```javascript
-/**
- * @param Object payload
- * @param Object referenceData
- * @returns Object transformedPayload
- */
-const transformer = (payload, referenceData) => {
-   /*
-    ...
-    ...
-    ...
-   */
-   return transformedPayload;
-}
-```
-#### Input
- * @param Object payload 
- ```JSON
- {
+
+#### Expose a POST endpoint which accepts an input JSON object with payload, referenceData and returns a transformedPayload (JSON).
+##### The POST API should substitute the {REF_*} values in payload using refernceData and return the transformed payload.
+
+
+#### Input payload to POST API
+```JSON
+{
+   payload: {
    "name": "subscriber",
    "valueType": "array",
    "value": [
@@ -103,20 +92,17 @@ const transformer = (payload, referenceData) => {
        "value": "0"
      }
    ]
- }
-
- ```
- * @param Object referenceData
- ```javascript
- {
+ },
+   referenceData: {
      REF_MSISDN: '0406679321',
      REF_IMSI: '50002312344314',
      REF_SERVPROFID: '2'
- }
- ```
+   }
+}
+```
+
  
-#### Expected Output
- * returns Object transformedPayload 
+#### Expected API Response
  ```JSON
  {
    "name": "subscriber",
@@ -205,3 +191,4 @@ const transformer = (payload, referenceData) => {
 
  ```
  
+ #### Dockerize the application.
