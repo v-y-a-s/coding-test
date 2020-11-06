@@ -1,26 +1,32 @@
 import Joi, { array, string } from '@hapi/joi';
-import { Request, Response } from 'express';
+import { Request, Response, Router } from 'express';
 import { DataElement, TransformationInputValidator, TransformationInput, valueTypes, ReferenceData } from '../types/basic';
 
-export const rootHandler = (_req: Request, res: Response) => {
-  return res.send('API is working');
-};
-
-export const transformationHandler = (req: Request, res: Response) => {
-
-  try {
-    const inputData: TransformationInput = <TransformationInput>req.body;
-    Joi.attempt(inputData, TransformationInputValidator);
-    const { payload, referenceData: refs } = inputData;
-    replaceValue(payload, refs)
-    return res.json(inputData);
-  } catch (e) {
-    console.log(e)
-    return res.status(400).json({
-      message: e.details || e.message
+export const rootHandler = async (apiRouter: Router) => {
+  apiRouter.get('/', (_req: Request, res: Response) => {
+    return res.send({
+      msg: 'API is working'
     });
-  }
-};
+  });
+}
+
+export const transformationHandler = async (apiRouter: Router) => {
+  apiRouter.post('/transform', async (req: Request, res: Response) => {
+    try {
+      const inputData: TransformationInput = <TransformationInput>req.body;
+      Joi.attempt(inputData, TransformationInputValidator);
+      const { payload, referenceData: refs } = inputData;
+      replaceValue(payload, refs)
+      return res.json(inputData.payload);
+    } catch (e) {
+      console.log(e)
+      return res.status(400).json({
+        message: e.details || e.message
+      });
+    }
+  });
+}
+
 
 export const replaceValue = (input: DataElement, refs: ReferenceData) => {
   if (input.valueType === valueTypes.array && Array.isArray(input.value)) {
