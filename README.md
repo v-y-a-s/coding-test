@@ -192,3 +192,45 @@
  ```
  
  #### Dockerize the application.
+
+
+
+----------
+
+----------
+
+
+### Application 
+
+- Node JS + TS
+- Routing: Express
+- Unit Testing: Jest 
+- Validation: Joi
+
+### API
+
+- Nested, dynamic payload validation using JOI. 
+- Every node is tested for type and given schema
+- This could be done in different ways, if the strucutre was not dynamic, but this app is designed to handle this use case. 
+- Unit test, tests happy path but can add more failure scenarios.
+
+### Instructions to test: 
+
+- localhost:8000/api/ - API status
+- localhost:8000/api/transform/ - Transform input, reject invalid structure [It will accept dynamic, and replace if the refs are found]
+
+```
+           {
+                "name": "MN",
+                "valueType": "string",
+                "value": "{REF_MSISDN}"
+           }
+```
+
+- value can be a string or an array with similar struct
+- Run `yarn test` to run Unit tests
+- Run `yarn dev:start` for local development [`run npm i` before that]
+
+### Docker
+
+- Try: Run `make prod` if you are on a UNIX based OS or copy the docker command from make file

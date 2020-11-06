@@ -23,7 +23,6 @@ describe('Post Endpoints', () => {
     })
 
     it('POST Works', async () => {
-        console.log(testInput)
         const res = await request(app).post('/transform').set('Content-Type', 'application/json').send(testInput);
         expect(res.status).toEqual(200)
         expect(res.body).toStrictEqual(testOutPut)
